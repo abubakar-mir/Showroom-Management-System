@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Payments</h1>
+    <a href="{{ url_for('add_payment') }}">Add Payment</a><br><br>
+    <table border="1">
+        <tr>
+            <th>Payment ID</th>
+            <th>Sale ID</th>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Date</th>
+        </tr>
+        {% for payment in payments %}
+        <tr>
+            <td>{{ payment['PaymentID'] }}</td>
+            <td>{{ payment['SaleID'] }}</td>
+            <td>{{ payment['Amount'] }}</td>
+            <td>{{ payment['PaymentMethod'] }}</td>
+            <td>{{ payment['PaymentDate'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Employee List</h1>
+
+    <h2>Add Employee</h2>
+    <form method="POST" action="{{ url_for('add_employee') }}">
+        Name: <input type="text" name="name" required>
+        Role: <input type="text" name="role">
+        Contact: <input type="text" name="contact">
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Employees</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Contact</th>
+            <th>Actions</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee['EmployeeID'] }}</td>
+            <td>{{ employee['Name'] }}</td>
+            <td>{{ employee['Role'] }}</td>
+            <td>{{ employee['Contact'] }}</td>
+            <td>
+                <a href="{{ url_for('edit_employee', id=employee['EmployeeID']) }}">Edit</a>
+                <a href="{{ url_for('delete_employee', id=employee['EmployeeID']) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>

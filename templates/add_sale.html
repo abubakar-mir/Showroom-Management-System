@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Sale</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Add Sale</h1>
+    <form method="POST">
+        Customer:
+        <select name="customer" required>
+            {% for c in customers %}
+            <option value="{{ c['CustomerID'] }}">{{ c['Name'] }}</option>
+            {% endfor %}
+        </select><br>
+
+        Employee:
+        <select name="employee" required>
+            {% for e in employees %}
+            <option value="{{ e['EmployeeID'] }}">{{ e['Name'] }}</option>
+            {% endfor %}
+        </select><br>
+
+        Sale Date: <input type="date" name="sale_date" required><br><br>
+
+        <h3>Products</h3>
+        {% for p in products %}
+            <input type="checkbox" name="product" value="{{ p['ProductID'] }}">
+            {{ p['Name'] }} (Stock: {{ p['Stock'] }})
+            Quantity: <input type="number" name="quantity" min="1" value="1"><br>
+        {% endfor %}
+
+        <button type="submit">Add Sale</button>
+    </form>
+    <a href="{{ url_for('sales') }}">Back to Sales</a>
+</body>
+</html>

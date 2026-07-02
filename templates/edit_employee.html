@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Edit Employee</h1>
+    <form method="POST">
+        Name: <input type="text" name="name" value="{{ employee['Name'] }}" required><br>
+        Role: <input type="text" name="role" value="{{ employee['Role'] }}"><br>
+        Contact: <input type="text" name="contact" value="{{ employee['Contact'] }}"><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('employees') }}">Back to Employee List</a>
+</body>
+</html>

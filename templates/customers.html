@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Customer List</h1>
+
+    <h2>Add Customer</h2>
+    <form method="POST" action="{{ url_for('add_customer') }}">
+        Name: <input type="text" name="name" required>
+        Phone: <input type="text" name="phone">
+        Address: <input type="text" name="address">
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Customers</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer['CustomerID'] }}</td>
+            <td>{{ customer['Name'] }}</td>
+            <td>{{ customer['Phone'] }}</td>
+            <td>{{ customer['Address'] }}</td>
+            <td>
+                <a href="{{ url_for('edit_customer', id=customer['CustomerID']) }}">Edit</a>
+                <a href="{{ url_for('delete_customer', id=customer['CustomerID']) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>

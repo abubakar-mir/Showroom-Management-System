@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Supplier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Edit Supplier</h1>
+    <form method="POST">
+        Name: <input type="text" name="name" value="{{ supplier['Name'] }}" required><br>
+        Company: <input type="text" name="company" value="{{ supplier['Company'] }}"><br>
+        Contact: <input type="text" name="contact" value="{{ supplier['Contact'] }}"><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('suppliers') }}">Back to Supplier List</a>
+</body>
+</html>

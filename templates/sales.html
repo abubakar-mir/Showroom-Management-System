@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <nav class="navbar">
+    <a href="{{ url_for('index') }}">Products</a>
+    <a href="{{ url_for('customers') }}">Customers</a>
+    <a href="{{ url_for('suppliers') }}">Suppliers</a>
+    <a href="{{ url_for('employees') }}">Employees</a>
+    <a href="{{ url_for('sales') }}">Sales</a>
+    <a href="{{ url_for('payments') }}">Payments</a>
+</nav>
+<hr>
+
+    <h1>Sales</h1>
+    <a href="{{ url_for('add_sale') }}">Add Sale</a><br><br>
+    <table border="1">
+        <tr>
+            <th>Sale ID</th>
+            <th>Customer</th>
+            <th>Employee</th>
+            <th>Date</th>
+        </tr>
+        {% for sale in sales %}
+        <tr>
+            <td>{{ sale['SaleID'] }}</td>
+            <td>{{ sale['CustomerName'] }}</td>
+            <td>{{ sale['EmployeeName'] }}</td>
+            <td>{{ sale['SaleDate'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Products</a>
+</body>
+</html>
